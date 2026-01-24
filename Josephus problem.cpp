@@ -1,18 +1,9 @@
 class Solution {
 public:
-    int minPairSum(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
-        int l  = 0;
-        int r  = nums.size()-1;
-        int res = 0;
+    int josephus(int n, int k) {
+        if (n == 1)
+            return 1;
 
-       while(l<r){
-          res = max(res,nums[l]+nums[r]);
-          l++;
-          r--;
-       }
-       return res;
+        return (josephus(n - 1, k) + k - 1) % n + 1;
     }
 };
-
-auto init = atexit([]() { ofstream("display_runtime.txt") << "0"; });
